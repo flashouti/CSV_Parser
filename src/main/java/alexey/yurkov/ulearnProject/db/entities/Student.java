@@ -12,7 +12,7 @@ import java.util.List;
 public class Student {
 
     @Id
-    private String ulearnID;
+    private int ulearnID;
 
     @Column
     private String firstName;
