@@ -26,16 +26,17 @@ public class CSVParser {
     @Autowired
     public CSVParser(StudentService studentService) throws IOException, CsvValidationException {
         this.studentService = studentService;
+        this.headers = parseHeaders();
+        this.tasks = parseTasks();
     }
 
-    /*
-     public String[] getHeaders() throws IOException, CsvValidationException {
+
+     public String[] parseHeaders() throws IOException, CsvValidationException {
         var fileInputStream = new FileInputStream("basicprogramming.csv");
         var inputReader = new InputStreamReader(fileInputStream, Charset.forName("windows-1251"));
         var csvReader = new CSVReaderBuilder(inputReader).build();
-        return;
+        return String.join(",", csvReader.readNext()).split(";");
     }
-    */
 
 
     public void saveStudents(){
@@ -43,12 +44,6 @@ public class CSVParser {
             var fileInputStream = new FileInputStream("basicprogramming.csv");
             var inputReader = new InputStreamReader(fileInputStream, Charset.forName("UTF-8"));
             var csvReader = new CSVReaderBuilder(inputReader).build();
-            this.headers = String.join(",", csvReader.readNext()).split(";");
-            this.tasks = Arrays.stream(headers).map(s -> {
-                Task task = new Task();
-                task.setName(s);
-                return task;
-            }).toArray(Task[]::new);
             csvReader.skip(1);
             String[] line;
             var cnt = 0;
@@ -62,7 +57,6 @@ public class CSVParser {
         }
     }
 
-    /*
     public Task[] parseTasks(){
         tasks = Arrays.stream(headers).map(s -> {
             Task task = new Task();
@@ -71,7 +65,6 @@ public class CSVParser {
         }).toArray(Task[]::new);
         return tasks;
     }
-     */
 
     public Student parseStudent(String[] line){
         String[] studentData = String.join(",", line).split(";");

@@ -19,10 +19,7 @@ import java.util.Objects;
 public class VkApiParser {
 
     private final StudentService studentService;
-    private String accessToken = "188451ea188451ea188451ea691b92ffe311884188451ea7d05f42b926a0c6f87bfff72";
-    private String appID = "51817993";
-    private String secretKey = "atQhWPAEjjlB2xbnaz8G";
-    private String vkGroupId = "basicprogrammingrtf2023";
+
     @Autowired
     public VkApiParser(StudentService studentService) {
         this.studentService = studentService;
