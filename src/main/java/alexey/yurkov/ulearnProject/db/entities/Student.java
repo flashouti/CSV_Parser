@@ -1,5 +1,7 @@
 package alexey.yurkov.ulearnProject.db.entities;
 
+import com.vk.api.sdk.objects.base.Sex;
+import com.vk.api.sdk.objects.stats.Country;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,18 @@ public class Student {
 
     @Column
     private String email;
+
+    @Column
+    private String bdate;
+
+    @Column
+    private String education;
+
+    @Column
+    private Integer followersQuantity;
+
+    @Column
+    private Sex sex;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "groupId")

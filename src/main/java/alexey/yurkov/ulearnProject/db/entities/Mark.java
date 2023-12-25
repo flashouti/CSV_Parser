@@ -21,6 +21,6 @@ public class Mark {
     private Task task;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", referencedColumnName = "")
+    @JoinColumn(name = "student_id")
     private Student student;
 }

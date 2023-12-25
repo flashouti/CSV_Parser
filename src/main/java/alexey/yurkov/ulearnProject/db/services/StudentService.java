@@ -29,13 +29,17 @@ public class StudentService {
         return foundStudent.orElse(null);
     }
 
+    public List<Student> getStudentsByFullName(String firstName, String lastName) {
+        return studentRepository.findByFirstNameAndLastName(firstName, lastName);
+    }
+
     @Transactional
     public void save(Student student) {
         studentRepository.save(student);
     }
 
     @Transactional
-    public void update(int id, Student updatedStudent) {
+    public void update(String id, Student updatedStudent) {
         updatedStudent.setUlearnID(id);
         studentRepository.save(updatedStudent);
     }
